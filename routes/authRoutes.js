@@ -10,4 +10,14 @@ module.exports = app => {
   // Below code handles the callbackURL with an auth id and passes it on to passport to receieve the accessToken and refreshToken
   // here passport.authenticate function automatically detects the auth id in the callbackURL and behaves differently from first call
   app.get('/auth/google/callback', passport.authenticate('google'));
+
+  app.get('/api/logout', (req, res) => {
+    req.logout();
+    res.send(req.user);
+  });
+
+  app.get('/api/current_user', (req, res) => {
+    res.send(req.user);
+  });
+
 };
